@@ -62,7 +62,7 @@ if __name__ == '__main__':
     list_obj = Detect_Clothes(img, model)
     img_with_boxes = Draw_Bounding_Box(img, list_obj)
 
-    cv2.imshow("Clothes detection", cv2.cvtColor(img_with_boxes, cv2.COLOR_RGB2BGR))
+#     cv2.imshow("Clothes detection", cv2.cvtColor(img_with_boxes, cv2.COLOR_RGB2BGR))
     cv2.waitKey(0)
     cv2.destroyAllWindows()
     cv2.imwrite("./images/test6_clothes_detected.jpg", cv2.cvtColor(img_with_boxes, cv2.COLOR_RGB2BGR)*255)
