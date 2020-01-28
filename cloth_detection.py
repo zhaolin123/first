@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sat Jun 22 16:01:13 2019
-
-@author: Wei-Hsiang, Shen
-"""
-
 import numpy as np
 import time
 import tensorflow as tf
@@ -48,13 +41,28 @@ def Detect_Clothes_and_Crop(img_tensor, model, threshold=0.5):
     img = np.squeeze(img_tensor.numpy())
     img_width = img.shape[1]
     img_height = img.shape[0]
-
+    print(img.dtype)
     # crop out one cloth
+    new_W = 400
+    new_H = 500
     for obj in list_obj:
         if obj['label'] == 'short_sleeve_top' and obj['confidence']>threshold:
             img_crop = img[int(obj['y1']*img_height):int(obj['y2']*img_height), int(obj['x1']*img_width):int(obj['x2']*img_width), :]
+            old_W = img_crop.shape[1]
+            old_H = img_crop.shape[0]
 
-    return img_crop
+            new_img_crop = np.zeros((new_H, new_W, img_crop.shape[2]), dtype=np.float32)
+
+            if old_H/new_H > old_W/new_W:
+                max_H = new_H
+                max_W = int(new_W * new_H / old_H)
+            else:
+                max_W = new_W
+                max_H = int(new_H * new_W / old_W)
+            for i in range(max_H):
+                for j in range(max_W):
+                    new_img_crop[i][j] = img_crop[int(i / max_H * old_H)][int(j / max_W * old_W)]
+    return new_img_crop
 
 if __name__ == '__main__':
     img = Read_Img_2_Tensor('./images/test6.jpg')
