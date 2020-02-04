@@ -25,7 +25,7 @@ for filename in os.listdir(r"/content/gdrive/My Drive/cloth_for_training/"):
     img_tensor = Read_Img_2_Tensor(img_path)
 
     # Clothes detection and crop the image
-    img_crop = Detect_Clothes_and_Crop(img_tensor, model)
+    img_crop = Detect_Clothes_and_Crop(img_tensor, model, filename)
 
    # Pretrained classifer parameters
     PEAK_COUNT_THRESHOLD = 0.02
