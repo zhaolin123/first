@@ -41,7 +41,10 @@ def Detect_Clothes_and_Crop(img_tensor, model, threshold=0.5):
     img = np.squeeze(img_tensor.numpy())
     img_width = img.shape[1]
     img_height = img.shape[0]
-    print(img.dtype)
+
+    # print(img.dtype)
+    # print()
+    
     # crop out one cloth
     new_W = 260
     new_H = 260
@@ -49,12 +52,8 @@ def Detect_Clothes_and_Crop(img_tensor, model, threshold=0.5):
         if (obj['label'] == 'short_sleeve_top' and obj['confidence'] or 
             obj['label'] == 'long_sleeve_top' and obj['confidence'] or 
             obj['label'] == 'short_sleeve_outwear' and obj['confidence'] or 
-            obj['label'] == 'long_sleeve_outwear' and obj['confidence'] or
-            obj['label'] == 'shorts' and obj['confidence'] or
-            obj['label'] == 'vest' and obj['confidence'] or
-            obj['label'] == 'sling' and obj['confidence'] or
-            obj['label'] == 'trousers' and obj['confidence']
-           )>threshold:
+            obj['label'] == 'long_sleeve_outwear' and obj['confidence'] 
+            )>threshold:
             img_crop = img[int(obj['y1']*img_height):int(obj['y2']*img_height), int(obj['x1']*img_width):int(obj['x2']*img_width), :]
             old_W = img_crop.shape[1]
             old_H = img_crop.shape[0]
@@ -70,7 +69,12 @@ def Detect_Clothes_and_Crop(img_tensor, model, threshold=0.5):
             for i in range(max_H):
                 for j in range(max_W):
                     new_img_crop[i][j] = img_crop[int(i / max_H * old_H)][int(j / max_W * old_W)]
-    return new_img_crop
+            return new_img_crop
+        else:
+            print('no label')
+            return img
+
+    
 
 if __name__ == '__main__':
     img = Read_Img_2_Tensor('./images/test6.jpg')
