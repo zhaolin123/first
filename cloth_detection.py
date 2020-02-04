@@ -43,10 +43,10 @@ def Detect_Clothes_and_Crop(img_tensor, model, threshold=0.5):
     img_height = img.shape[0]
     print(img.dtype)
     # crop out one cloth
-    new_W = 400
-    new_H = 500
+    new_W = 260
+    new_H = 260
     for obj in list_obj:
-        if obj['label'] == 'short_sleeve_top' and obj['confidence']>threshold:
+        if (obj['label'] == 'short_sleeve_top' and obj['confidence'] or obj['label'] == 'long_sleeve_top' and obj['confidence'])>threshold:
             img_crop = img[int(obj['y1']*img_height):int(obj['y2']*img_height), int(obj['x1']*img_width):int(obj['x2']*img_width), :]
             old_W = img_crop.shape[1]
             old_H = img_crop.shape[0]
