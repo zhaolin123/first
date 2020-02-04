@@ -35,7 +35,7 @@ def Detect_Clothes(img, model_yolov3, eager_execution=True):
 
     return list_obj
 
-def Detect_Clothes_and_Crop(img_tensor, model, filename threshold=0.5):
+def Detect_Clothes_and_Crop(img_tensor, model, filename, threshold=0.5):
     list_obj = Detect_Clothes(img_tensor, model)
 
     img = np.squeeze(img_tensor.numpy())
