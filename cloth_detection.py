@@ -71,7 +71,7 @@ def Detect_Clothes_and_Crop(img_tensor, model, threshold=0.5):
                     new_img_crop[i][j] = img_crop[int(i / max_H * old_H)][int(j / max_W * old_W)]
             return new_img_crop
         else:
-            print('no label')
+            print('no label' + filename)
             return img
 
     
