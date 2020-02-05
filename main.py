@@ -15,20 +15,23 @@ root_path = '/content/gdrive/My Drive/cloth_for_training/'  #change dir to your 
 print(os.getcwd())
 
 for filename in os.listdir(r"/content/gdrive/My Drive/cloth_for_training/"): 
-    # print(filename)   
-    img_path = root_path + filename
-    # print(img_path)
+    try:
+        print(filename)   
+        img_path = root_path + filename
+        # print(img_path)
 
-    # Read image
-    img = cv2.imread(img_path)
-    #img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-    img_tensor = Read_Img_2_Tensor(img_path)
+        # Read image
+        img = cv2.imread(img_path)
+        #img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+        img_tensor = Read_Img_2_Tensor(img_path)
 
-    # Clothes detection and crop the image
-    img_crop = Detect_Clothes_and_Crop(img_tensor, model, filename)
+        # Clothes detection and crop the image
+        img_crop = Detect_Clothes_and_Crop(img_tensor, model, filename)
 
-   # Pretrained classifer parameters
-    PEAK_COUNT_THRESHOLD = 0.02
-    PEAK_VALUE_THRESHOLD = 0.01
+       # Pretrained classifer parameters
+        PEAK_COUNT_THRESHOLD = 0.02
+        PEAK_VALUE_THRESHOLD = 0.01
 
-    Save_Image(img_crop, '/content/gdrive/My Drive/aftertraining/' + filename)
+        Save_Image(img_crop, '/content/gdrive/My Drive/aftertraining/' + filename)
+    except:
+        continue
