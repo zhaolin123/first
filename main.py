@@ -45,7 +45,7 @@ for filename in os.listdir(r"/content/gdrive/My Drive/cloth_for_training/"):
             Save_Image(img_crop, '/content/gdrive/My Drive/short_sleeve_outwear/' + filename)
         if(label == 'long_sleeve_outwear'):
             Save_Image(img_crop, '/content/gdrive/My Drive/long_sleeve_outwear/' + filename)
-    Save_Image(img_crop, '/content/gdrive/My Drive/long_sleeve_outwear/' + filename)
+#     Save_Image(img_crop, '/content/gdrive/My Drive/long_sleeve_outwear/' + filename)
  
     except:
         continue
