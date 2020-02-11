@@ -34,6 +34,16 @@ for filename in os.listdir(r"/content/gdrive/My Drive/cloth_for_training/"):
         PEAK_COUNT_THRESHOLD = 0.02
         PEAK_VALUE_THRESHOLD = 0.01
 
-        Save_Image(img_crop, '/content/gdrive/My Drive/aftertraining/' + filename)
+#         Save_Image(img_crop, '/content/gdrive/My Drive/aftertraining/' + filename)
+        
+        if(obj['label'== 'short_sleeve_top')
+            Save_Image(img_crop, '/content/gdrive/My Drive/short_sleeve_top/' + filename)
+        if(obj['label'] == 'long_sleeve_top')
+            Save_Image(img_crop, '/content/gdrive/My Drive/long_sleeve_top/' + filename)
+        if(obj['label'] == 'short_sleeve_outwear')
+            Save_Image(img_crop, '/content/gdrive/My Drive/short_sleeve_outwear/' + filename)
+        if(obj['label'] == 'long_sleeve_outwear')
+            Save_Image(img_crop, '/content/gdrive/My Drive/long_sleeve_outwear/' + filename)
+ 
     except:
         continue
