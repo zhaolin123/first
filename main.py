@@ -26,7 +26,7 @@ for filename in os.listdir(r"/content/gdrive/My Drive/cloth_for_training/"):
         img_tensor = Read_Img_2_Tensor(img_path)
 
         # Clothes detection and crop the image
-        img_crop = Detect_Clothes_and_Crop(img_tensor, model, filename)
+        img_crop, label = Detect_Clothes_and_Crop(img_tensor, model, filename)
         if img_crop is None:
             continune
 
@@ -36,14 +36,16 @@ for filename in os.listdir(r"/content/gdrive/My Drive/cloth_for_training/"):
 
 #         Save_Image(img_crop, '/content/gdrive/My Drive/aftertraining/' + filename)
         
-        if(obj['label'== 'short_sleeve_top')
+        print(label)
+        if(label == 'short_sleeve_top'):
             Save_Image(img_crop, '/content/gdrive/My Drive/short_sleeve_top/' + filename)
-        if(obj['label'] == 'long_sleeve_top')
+        if(label == 'long_sleeve_top'):
             Save_Image(img_crop, '/content/gdrive/My Drive/long_sleeve_top/' + filename)
-        if(obj['label'] == 'short_sleeve_outwear')
+        if(label == 'short_sleeve_outwear'):
             Save_Image(img_crop, '/content/gdrive/My Drive/short_sleeve_outwear/' + filename)
-        if(obj['label'] == 'long_sleeve_outwear')
+        if(label == 'long_sleeve_outwear'):
             Save_Image(img_crop, '/content/gdrive/My Drive/long_sleeve_outwear/' + filename)
+    Save_Image(img_crop, '/content/gdrive/My Drive/long_sleeve_outwear/' + filename)
  
     except:
         continue
